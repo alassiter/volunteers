@@ -1,28 +1,20 @@
 class OpportunitiesController < ApplicationController
   before_action :set_opportunity, only: [:show, :edit, :update, :destroy]
 
-  # GET /opportunities
-  # GET /opportunities.json
   def index
     @opportunities = Opportunity.all
   end
 
-  # GET /opportunities/1
-  # GET /opportunities/1.json
   def show
   end
 
-  # GET /opportunities/new
   def new
     @opportunity = Opportunity.new
   end
 
-  # GET /opportunities/1/edit
   def edit
   end
 
-  # POST /opportunities
-  # POST /opportunities.json
   def create
     @opportunity = Opportunity.new(opportunity_params)
 
@@ -37,8 +29,6 @@ class OpportunitiesController < ApplicationController
     end
   end
 
-  # PATCH/PUT /opportunities/1
-  # PATCH/PUT /opportunities/1.json
   def update
     respond_to do |format|
       if @opportunity.update(opportunity_params)
@@ -51,8 +41,6 @@ class OpportunitiesController < ApplicationController
     end
   end
 
-  # DELETE /opportunities/1
-  # DELETE /opportunities/1.json
   def destroy
     @opportunity.destroy
     respond_to do |format|
