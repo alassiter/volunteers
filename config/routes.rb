@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'hello/index'
   devise_for :users
   resources :volunteers
   resources :opportunities
