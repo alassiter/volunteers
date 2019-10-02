@@ -7,5 +7,7 @@ class CreateAssignments < ActiveRecord::Migration[6.0]
 
       t.timestamps
     end
+
+    add_index :assignments, [:opportunity_id, :volunteer_id]
   end
 end
