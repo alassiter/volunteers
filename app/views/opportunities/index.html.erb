@@ -21,11 +21,11 @@
 
         <div class="column is-one-fifth buttons">
           <% if user_signed_in? && current_user.is_admin? %>
-            <%= link_to 'View Volunteers', signup_assignment_path(opportunity: opportunity), class: 'button is-small is-dark is-outlined is-fullwidth' %>
+            <%= link_to 'View Volunteers', opportunity_path(opportunity), class: 'button is-small is-dark is-outlined is-fullwidth' %>
             <%= link_to 'Edit', edit_opportunity_path(opportunity), class: 'button is-small is-dark is-outlined is-fullwidth' %>
             <%= link_to 'Destroy', opportunity, method: :delete, data: { confirm: 'Are you sure?' }, class: 'button is-small is-danger is-outlined is-fullwidth' %>
           <% else %>
-            <%= link_to 'Sign Up', signup_assignment_path(opportunity: opportunity), class: 'button is-small is-dark is-outlined is-fullwidth' %>
+            <%= link_to 'Sign Up', opportunity_path(opportunity), class: 'button is-small is-dark is-outlined is-fullwidth' %>
           <% end %>
         </div>
       </div>

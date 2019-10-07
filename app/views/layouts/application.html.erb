@@ -20,6 +20,9 @@
             <div class="level-item">
               <span class="title">Eastside Signups</span>
             </div>
+            <div class="level-item">
+              <%= link_to 'Opportunities', opportunities_path %>
+            </div>
           </div>
           <div class="level-right">
             <p class="level-item">
@@ -32,12 +35,16 @@
     </header>
     <section class="section">
       <div class="container">
-        <% if notice %>
+        <% if flash[:notice] %>
           <p class="notification is-primary"><%= notice %></p>
         <% end %>
 
-        <% if alert %>
-          <p class="notification is-danger"><%= alert %></p>
+        <% if flash[:alert] %>
+          <p class="notification is-warning"><%= alert %></p>
+        <% end %>
+
+        <% if flash[:error] %>
+          <p class="notification is-danger"><%= flash[:error] %></p>
         <% end %>
         
         <%= yield %>

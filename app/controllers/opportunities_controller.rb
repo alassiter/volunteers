@@ -6,6 +6,8 @@ class OpportunitiesController < ApplicationController
   end
 
   def show
+    @volunteers = @opportunity.volunteers.to_a
+    @opportunity.volunteers.build
   end
 
   def new
@@ -26,10 +28,21 @@ class OpportunitiesController < ApplicationController
   end
 
   def update
-    if @opportunity.update(opportunity_params)
-      redirect_to opportunities_url, notice: 'Opportunity was successfully updated.'
+    @volunteer = Volunteer.find_by(email: opportunity_with_volunteer_params[:volunteers][:email])
+
+    if @volunteer
+      if @opportunity.volunteers.include?(@volunteer)
+        redirect_to opportunities_url, flash: { alert: "You've already signed up for #{@opportunity.name}" }
+      else
+        @opportunity.volunteers << @volunteer
+        redirect_to opportunity_url(@opportunity), notice: "You have signed up for #{@opportunity.name}"
+      end
     else
-      render :edit
+      if @opportunity.update(opportunity_params)
+        redirect_to opportunities_url, notice: 'Opportunity was successfully updated.'
+      else
+        render :edit
+      end
     end
   end
 
@@ -42,16 +55,28 @@ class OpportunitiesController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_opportunity
-      @opportunity = Opportunity.find(params[:id])
+      @opportunity = Opportunity.includes(:volunteers).find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def opportunity_params
       params.require(:opportunity).permit(
         :name, 
-        :description, 
-        :tools_needed, 
+        :description,
+        :tools_needed,
         :skills_needed
+      )
+    end
+
+    def opportunity_with_volunteer_params
+      params.require(:opportunity).permit(
+        volunteers: [
+          :id,
+          :first_name,
+          :last_name,
+          :email,
+          :_destroy
+        ]
       )
     end
 end

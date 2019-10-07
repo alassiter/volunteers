@@ -1,28 +1,74 @@
-<p>
-  <strong>Name:</strong>
-  <%= @opportunity.name %>
-</p>
+<div class="content">
+  <div class="title is-4">Current Volunteers for <span class="has-text-grey"><%= @opportunity.name %></span></div>
 
-<p>
-  <strong>Description:</strong>
-  <div class="text-border">
-    <%= simple_format @opportunity.description %>
+  <% if @volunteers.none? %>
+    <p>No one has signed up for this opportunity</p>
+  <% end %>
+
+  <% @volunteers.each do |volunteer| %>
+    <p>
+      <%= [volunteer.first_name, volunteer.last_name].join(' ') %> 
+    </p>
+  <% end %>
+</div>
+
+
+<div class="title is-4">Sign up now:</div>
+
+<div class="card">
+  <div class="card-content">
+    <%= form_with(model: @opportunity, local: true) do |form| %>
+      <% if @opportunity.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@opportunity.errors.count, "error") %> prohibited this opportunity from being saved:</h2>
+
+          <ul>
+            <% @opportunity.errors.full_messages.each do |message| %>
+              <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
+
+      <%= form.fields_for :volunteers do |vol_form| %>
+        <div class="field is-horizontal">
+          <div class="field-label">
+            <%= vol_form.label :name %>
+          </div>
+
+          <div class="field-body">
+            <div class="field">
+              <div class="control">
+                <%= vol_form.text_field :first_name, class: 'input' %>
+              </div>
+            </div>
+
+            <div class="field">
+              <div class="control">
+                <%= vol_form.text_field :last_name, class: 'input' %>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="field is-horizontal">
+          <div class="field-label">
+            <%= vol_form.label :email %>
+          </div>
+          <div class="field-body">
+            <div class="field">
+              <div class="control">
+                <%= vol_form.text_field :email, class: 'input' %>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="buttons is-right">
+          <%= form.submit 'Sign Up', class: 'button is-dark is-outlined' %>
+        </div>
+      <% end #fields_for %>
+    <% end %>
   </div>
-</p>
-
-<p>
-  <strong>Tools Needed:</strong>
-  <div class="text-border">
-    <%= simple_format @opportunity.tools_needed %>
-  </div>
-</p>
-
-<p>
-  <strong>Skills Needed:</strong>
-  <div class="text-border">
-    <%= simple_format @opportunity.skills_needed %>
-  </div>
-</p>
-
-<%= link_to 'Edit', edit_opportunity_path(@opportunity) %> |
-<%= link_to 'Back', opportunities_path %>
+  
+</div>
