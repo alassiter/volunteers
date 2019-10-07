@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   get 'hello/index'
-  devise_for :users
+  devise_for :users, controllers: { registrations: 'registrations' }
   resources :volunteers
   resources :opportunities
   resources :assignments, except: [:new]
