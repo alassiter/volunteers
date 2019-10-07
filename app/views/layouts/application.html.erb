@@ -32,8 +32,14 @@
     </header>
     <section class="section">
       <div class="container">
-        <p class="notice"><%= notice %></p>
-        <p class="alert"><%= alert %></p>
+        <% if notice %>
+          <p class="notification is-primary"><%= notice %></p>
+        <% end %>
+
+        <% if alert %>
+          <p class="notification is-danger"><%= alert %></p>
+        <% end %>
+        
         <%= yield %>
       </div>
     </section>
