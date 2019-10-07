@@ -5,14 +5,42 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body class="container">
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
-
-    <%= yield %>
+    <header class="header">
+      <div class="container">
+        <nav class="level">
+          <div class="level-left">
+            <div class="level-item">
+              <span class="title">Eastside Signups</span>
+            </div>
+          </div>
+          <div class="level-right">
+            <p class="level-item">
+              <%#= link_to("Manage Volunteers", volunteers_path, :class => "button is-dark is-outlined") %>
+              <%= render 'devise/menu/login_items' %>
+            </p>
+          </div>
+        </nav>
+      </div>
+    </header>
+    <section class="section">
+      <div class="container">
+        <p class="notice"><%= notice %></p>
+        <p class="alert"><%= alert %></p>
+        <%= yield %>
+      </div>
+    </section>
+    <footer class="footer">
+      <div class="container">
+        Copyright © 2019 Eastside Presbyterian. All rights reserved.
+      </div>
+    </footer>
   </body>
 </html>

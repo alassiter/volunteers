@@ -4,6 +4,15 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
+  ADMINS = %w(
+    geoff@eastsidepres.com
+    anthonylassiter@gmail.com
+  )
+
+  def is_admin?
+    ADMINS.include?(email)
+  end
+  
   def name
     "#{first_name} #{last_name}"
   end

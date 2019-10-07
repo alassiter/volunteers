@@ -13,15 +13,34 @@
 
   <div class="field">
     <%= form.label :name %>
-    <%= form.text_field :name %>
+    <div class="control">
+      <%= form.text_field :name, class: 'input' %>
+    </div>
+    
   </div>
 
   <div class="field">
     <%= form.label :description %>
-    <%= form.text_area :description %>
+    <div class="control">
+      <%= form.text_area :description, class: 'textarea' %>
+    </div>
+  </div>
+
+  <div class="field">
+    <%= form.label :tools_needed %>
+    <div class="control">
+      <%= form.text_area :tools_needed, class: 'textarea' %>
+    </div>
+  </div>
+
+  <div class="field">
+    <%= form.label :skills_needed %>
+    <div class="control">
+      <%= form.text_area :skills_needed, class: 'textarea' %>
+    </div>
   </div>
 
   <div class="actions">
-    <%= form.submit %>
+    <%= form.submit 'Save Opportunity', class: 'button is-dark is-outlined' %>
   </div>
 <% end %>

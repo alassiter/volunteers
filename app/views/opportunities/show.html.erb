@@ -5,7 +5,23 @@
 
 <p>
   <strong>Description:</strong>
-  <%= @opportunity.description %>
+  <div class="text-border">
+    <%= simple_format @opportunity.description %>
+  </div>
+</p>
+
+<p>
+  <strong>Tools Needed:</strong>
+  <div class="text-border">
+    <%= simple_format @opportunity.tools_needed %>
+  </div>
+</p>
+
+<p>
+  <strong>Skills Needed:</strong>
+  <div class="text-border">
+    <%= simple_format @opportunity.skills_needed %>
+  </div>
 </p>
 
 <%= link_to 'Edit', edit_opportunity_path(@opportunity) %> |

@@ -10,8 +10,14 @@
  * files in this directory. Styles in this file should be added after the last require_* statement.
  * It is generally better to create a new file per style scope.
  *
- *= require normalize
- *= require skeleton
- *= require_tree .
+ *= require main
  *= require_self
  */
+
+.text-border {
+  border: 1px #ccc solid;
+}
+
+.container {
+  max-width: 1100px;
+}
