@@ -7,7 +7,11 @@ class OpportunitiesController < ApplicationController
 
   def show
     @volunteers = @opportunity.volunteers.to_a
-    @opportunity.volunteers.build
+    @assignment = @opportunity.volunteers.build(
+      first_name: current_user&.first_name,
+      last_name: current_user&.last_name,
+      email: current_user&.email
+    )
   end
 
   def new

@@ -25,6 +25,10 @@
             </div>
           </div>
           <div class="level-right">
+            <% if current_user %>
+              <p class="level-item">Signed in as <%= current_user.name %></p>
+            <% end %>
+            
             <p class="level-item">
               <%#= link_to("Manage Volunteers", volunteers_path, :class => "button is-dark is-outlined") %>
               <%= render 'devise/menu/login_items' %>

@@ -39,13 +39,13 @@
           <div class="field-body">
             <div class="field">
               <div class="control">
-                <%= vol_form.text_field :first_name, class: 'input' %>
+                <%= vol_form.text_field :first_name, class: 'input', value: @assignment.first_name %>
               </div>
             </div>
 
             <div class="field">
               <div class="control">
-                <%= vol_form.text_field :last_name, class: 'input' %>
+                <%= vol_form.text_field :last_name, class: 'input', value: @assignment.last_name %>
               </div>
             </div>
           </div>
@@ -58,7 +58,7 @@
           <div class="field-body">
             <div class="field">
               <div class="control">
-                <%= vol_form.text_field :email, class: 'input' %>
+                <%= vol_form.text_field :email, class: 'input', value: @assignment.email %>
               </div>
             </div>
           </div>
