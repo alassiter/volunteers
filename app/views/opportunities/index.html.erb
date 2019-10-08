@@ -1,43 +1,12 @@
 <h1 class="title is-4">Work Day Opportunities</h1>
 
-<% @opportunities.each do |opportunity| %>
-  <div class="card">
-    <div class="card-content">
-      <div class="columns">
-        <div class="column">
-          <span class="title is-6">Name</span>
-          <p><%= opportunity.name %></p>
-        </div>
-        
-        <div class="column">
-          <span class="title is-6">Tools Needed</span>
-          <p><%= simple_format opportunity.tools_needed %></p>
-        </div>
-        
-        <div class="column">
-          <span class="title is-6">Skills Needed</span>
-          <p><%= simple_format opportunity.skills_needed %></p>
-        </div>
-
-        <div class="column is-one-fifth buttons">
-          <% if user_signed_in? && current_user.is_admin? %>
-            <%= link_to 'View Volunteers', opportunity_path(opportunity), class: 'button is-small is-dark is-outlined is-fullwidth' %>
-            <%= link_to 'Edit', edit_opportunity_path(opportunity), class: 'button is-small is-dark is-outlined is-fullwidth' %>
-            <%= link_to 'Destroy', opportunity, method: :delete, data: { confirm: 'Are you sure?' }, class: 'button is-small is-danger is-outlined is-fullwidth' %>
-          <% else %>
-            <%= link_to 'Sign Up', opportunity_path(opportunity), class: 'button is-small is-dark is-outlined is-fullwidth' %>
-          <% end %>
-        </div>
-      </div>
+<div class="columns is-multiline">
+  <% @opportunities.each do |opportunity| %>
+    <div class="column is-6">
+      <%= render opportunity %>
     </div>
-    <div class="card-content" style="padding-top: 0;">
-      <span class="title is-6">Description: </span>
-      <span><%= simple_format opportunity.description %></span>
-    </div>
-  </div>  
-  <br>
-<% end %>
-
+  <% end %>
+</div>
 
 <br>
 

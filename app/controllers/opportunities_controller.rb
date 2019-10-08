@@ -32,7 +32,13 @@ class OpportunitiesController < ApplicationController
   end
 
   def update
-    @volunteer = Volunteer.find_by(email: opportunity_with_volunteer_params[:volunteers][:email])
+    #TODO: move the assignment logic to the assignments controller, 
+    # allow this to only be for opportunities
+    @volunteer = nil
+
+    if params[:opportunity].key?(:volunteers)
+      @volunteer = Volunteer.find_by(email: opportunity_with_volunteer_params[:volunteers][:email])
+    end
 
     if @volunteer
       if @opportunity.volunteers.include?(@volunteer)
@@ -68,7 +74,8 @@ class OpportunitiesController < ApplicationController
         :name, 
         :description,
         :tools_needed,
-        :skills_needed
+        :skills_needed,
+        :volunteers_needed
       )
     end
 

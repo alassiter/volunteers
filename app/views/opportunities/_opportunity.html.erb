@@ -1,0 +1,46 @@
+<div class="card">
+  <div class="modal-card-head">
+    <div class="modal-card-title title is-6">
+      <%= opportunity.name %>
+    </div>
+    <% if opportunity.volunteers_needed.presence %>
+      <%= opportunity.volunteers_needed - opportunity.volunteers.count %> of <%= opportunity.volunteers_needed %> Volunteers Needed
+    <% else %>
+      Volunteers Needed
+    <% end %>
+  </div>
+
+  <div class="card-content">
+    <div class="columns">
+      <div class="column">
+        <span class="title is-6">Tools Needed</span>
+        <p><%= simple_format opportunity.tools_needed %></p>
+      </div>
+
+      <div class="column">
+        <span class="title is-6">Skills Needed</span>
+        <p><%= simple_format opportunity.skills_needed %></p>
+      </div>
+
+      <div class="column is-one-fifth buttons">
+        
+      </div>
+    </div>
+  </div>
+
+  <div class="card-content" style="padding-top: 0;">
+    <span class="title is-6">Description: </span>
+    <span><%= simple_format opportunity.description %></span>
+  </div>
+
+  <div class="card-footer" style="padding-top: 0;">
+    <% if user_signed_in? && current_user.is_admin? %>
+        <%= link_to 'View Volunteers', opportunity_path(opportunity), class: 'card-footer-item' %>
+        <%= link_to 'Edit', edit_opportunity_path(opportunity), class: 'card-footer-item' %>
+        <%= link_to 'Destroy', opportunity, 
+            method: :delete, data: { confirm: 'Are you sure?' }, class: 'card-footer-item' %>
+    <% else %>
+        <%= link_to 'Sign Up', opportunity_path(opportunity), class: 'card-footer-item' %>
+    <% end %>
+  </div>
+</div>  

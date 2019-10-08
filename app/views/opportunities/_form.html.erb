@@ -11,12 +11,24 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :name %>
-    <div class="control">
-      <%= form.text_field :name, class: 'input' %>
+  <div class="columns">
+    <div class="column">
+      <div class="field">
+        <%= form.label :name %>
+        <div class="control">
+          <%= form.text_field :name, class: 'input' %>
+        </div>
+      </div>
     </div>
-    
+
+    <div class="column">
+      <div class="field">
+        <%= form.label :volunteers_needed %>
+        <div class="control">
+          <%= form.text_field :volunteers_needed, class: 'input', placeholder: 'a number' %>
+        </div>
+      </div>
+    </div>
   </div>
 
   <div class="field">
