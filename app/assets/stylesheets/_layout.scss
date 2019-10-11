@@ -13,12 +13,12 @@ body {
   flex:1 0 auto;
 }
 
-.card {
+.card.card__opportunity {
   flex-direction: column;
   height: 100%;
   display: flex;
 }
 
-.card-footer {
+.card.card__opportunity .card-footer {
   margin-top: auto;
 }
