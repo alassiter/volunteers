@@ -12,3 +12,13 @@ body {
   display:flex;
   flex:1 0 auto;
 }
+
+.card {
+  flex-direction: column;
+  height: 100%;
+  display: flex;
+}
+
+.card-footer {
+  margin-top: auto;
+}
