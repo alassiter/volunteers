@@ -27,7 +27,9 @@
 
   <div class="card-content" style="padding-top: 0;">
     <span class="title is-6">Description: </span>
-    <span><%= simple_format opportunity.description %></span>
+    <span>
+      <%= sanitize simple_format(opportunity.description).gsub(URI.regexp, '<a href="\0">\0</a>').html_safe, tags: %w(p a), attributes: %w(href) %>
+    </span>
   </div>
 
   <div class="card-footer" style="padding-top: 0;">
