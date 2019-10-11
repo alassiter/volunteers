@@ -7,4 +7,10 @@ class Opportunity < ApplicationRecord
 
     volunteers.count >= volunteers_needed
   end
+
+  def volunteers_remaining
+    return 0 if volunteers_needed.nil?
+    
+    volunteers_needed - volunteers.count
+  end
 end

@@ -2,10 +2,13 @@ class Volunteer < User
   has_many :assignments
   has_many :opportunities, through: :assignments
   
-  before_create :set_random_password
+  before_validation :set_random_password, on: [:create]
 
   private
   def set_random_password
-    SecureRandom.hex
+    return if password.present?
+
+    self.password = SecureRandom.hex
+    self.password_confirmation = password
   end
 end

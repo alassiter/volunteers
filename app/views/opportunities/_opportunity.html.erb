@@ -3,11 +3,8 @@
     <div class="modal-card-title title is-6">
       <%= opportunity.name %>
     </div>
-    <% if opportunity.volunteers_needed.presence %>
-      <%= opportunity.volunteers_needed - opportunity.volunteers.count %> of <%= opportunity.volunteers_needed %> Volunteers Needed
-    <% else %>
-      Volunteers Needed
-    <% end %>
+
+    <%= volunteers_needed_text(opportunity) %>
   </div>
 
   <div class="card-content">

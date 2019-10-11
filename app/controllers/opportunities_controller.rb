@@ -2,7 +2,7 @@ class OpportunitiesController < ApplicationController
   before_action :set_opportunity, only: [:show, :edit, :update, :destroy]
 
   def index
-    @opportunities = Opportunity.all
+    @opportunities = Opportunity.all.order(:created_at)
   end
 
   def show
@@ -38,15 +38,19 @@ class OpportunitiesController < ApplicationController
 
     if params[:opportunity].key?(:volunteers)
       @volunteer = Volunteer.find_by(email: opportunity_with_volunteer_params[:volunteers][:email])
-    end
 
-    if @volunteer
-      if @opportunity.volunteers.include?(@volunteer)
-        redirect_to opportunities_url, flash: { alert: "You've already signed up for #{@opportunity.name}" }
+      if @volunteer
+        if @opportunity.volunteers.include?(@volunteer)
+          redirect_to opportunities_url, flash: { alert: "You've already signed up for #{@opportunity.name}" }
+        else
+          @opportunity.volunteers << @volunteer
+          redirect_to opportunity_url(@opportunity), notice: "You have signed up for #{@opportunity.name}"
+        end
       else
-        @opportunity.volunteers << @volunteer
+        @opportunity.volunteers << Volunteer.create(opportunity_with_volunteer_params[:volunteers])
         redirect_to opportunity_url(@opportunity), notice: "You have signed up for #{@opportunity.name}"
       end
+
     else
       if @opportunity.update(opportunity_params)
         redirect_to opportunities_url, notice: 'Opportunity was successfully updated.'
