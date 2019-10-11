@@ -37,8 +37,6 @@
         </nav>
       </div>
     </header>
-    <section class="section">
-      <div class="container">
         <% if flash[:notice] %>
           <p class="notification is-primary"><%= notice %></p>
         <% end %>
@@ -50,7 +48,8 @@
         <% if flash[:error] %>
           <p class="notification is-danger"><%= flash[:error] %></p>
         <% end %>
-        
+    <section class="section">
+      <div class="container">
         <%= yield %>
       </div>
     </section>
