@@ -2,6 +2,9 @@ class Opportunity < ApplicationRecord
   has_many :assignments
   has_many :volunteers, through: :assignments
 
+  has_many :photos, dependent: :destroy
+  accepts_nested_attributes_for :photos, allow_destroy: true, reject_if: proc { |attributes| attributes['image'].blank? }
+
   def filled?
     return false if volunteers_needed.to_i == 0
 

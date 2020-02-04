@@ -32,11 +32,19 @@
     </span>
   </div>
 
+  <div class="card-content">
+    <%= opportunity.photos.count %>
+    <% opportunity.photos.each do |photo| %>
+      <% next unless photo.image_url %>
+      <%= image_tag photo.image_url, alt: "alttext" %>
+    <% end %>
+  </div>
+
   <div class="card-footer" style="padding-top: 0;">
     <% if user_signed_in? && current_user.is_admin? %>
         <%= link_to 'View Volunteers', opportunity_path(opportunity), class: 'card-footer-item' %>
         <%= link_to 'Edit', edit_opportunity_path(opportunity), class: 'card-footer-item' %>
-        <%= link_to 'Destroy', opportunity, 
+        <%= link_to 'Delete', opportunity, 
             method: :delete, data: { confirm: 'Are you sure?' }, class: 'card-footer-item' %>
     <% else %>
         <%= link_to 'Sign Up', opportunity_path(opportunity), class: 'card-footer-item' %>

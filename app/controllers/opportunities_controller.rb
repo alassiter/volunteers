@@ -19,6 +19,8 @@ class OpportunitiesController < ApplicationController
   end
 
   def edit
+    @photos = @opportunity.photos
+    1.times { @opportunity.photos.build }
   end
 
   def create
@@ -53,6 +55,8 @@ class OpportunitiesController < ApplicationController
 
     else
       if @opportunity.update(opportunity_params)
+        logger.info('Updating')
+        logger.info("Photo: #{photos_params}")
         redirect_to opportunities_url, notice: 'Opportunity was successfully updated.'
       else
         render :edit
@@ -79,7 +83,11 @@ class OpportunitiesController < ApplicationController
         :description,
         :tools_needed,
         :skills_needed,
-        :volunteers_needed
+        :volunteers_needed,
+        photos_attributes: [
+          :image,
+          :_destroy
+        ]
       )
     end
 
