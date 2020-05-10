@@ -19,8 +19,7 @@ class OpportunitiesController < ApplicationController
   end
 
   def edit
-    @photos = @opportunity.photos
-    1.times { @opportunity.photos.build }
+    @photos = @opportunity.photos || 1.times { @opportunity.photos.build }
   end
 
   def create

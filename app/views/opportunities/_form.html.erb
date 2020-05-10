@@ -52,11 +52,9 @@
     </div>
   </div>
 
-  <% @photos.each do |photo| %>
-    <%= image_tag(photo.image_url, width: 300) %>
-  <% end %>
 
   <%= form.fields_for :photos do |pf| %>
+    <%= image_tag(pf.object.image_url) %>
     <%= pf.hidden_field :image, value: pf.object.cached_image_data %>
     <%= pf.file_field :image, hint: image_tag(pf.object.image_url) %>
     <%= pf.check_box :_destroy unless pf.object.new_record? %>
